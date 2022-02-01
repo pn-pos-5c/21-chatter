@@ -2,10 +2,10 @@
 {
     public interface IObserver
     {
-        public string ClientName { get; set; }
-        public string TopicsOfInterest { get; set; }
+        public string ClientName { get; }
+        public string TopicsOfInterest { get; }
 
-        public void Update(string name, string msg);
+        public void Update(Message message);
         public void ClientAttached(string name);
         public void ClientDetached(string name);
     }

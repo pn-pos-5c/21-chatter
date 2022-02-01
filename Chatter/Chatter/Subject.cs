@@ -2,24 +2,32 @@
 
 namespace Chatter
 {
-    public abstract class Subject
+    public class Subject
     {
         private readonly List<IObserver> observers = new();
-        public int NrObservers { get; }
+        public int NrObservers { get => observers.Count; }
 
         public void Attach(IObserver observer)
         {
             observers.Add(observer);
+            foreach (var o in observers)
+            {
+                o.ClientAttached(observer.ClientName);
+            }
         }
 
         public void Detach(IObserver observer)
         {
             observers.Remove(observer);
+            foreach (var o in observers)
+            {
+                o.ClientDetached(observer.ClientName);
+            }
         }
 
-        public void Notify(string name, string msg)
+        public void Notify(Message message)
         {
-            observers.ForEach(observer => observer.Update(name, msg));
+            observers.ForEach(observer => observer.Update(message));
         }
     }
 }

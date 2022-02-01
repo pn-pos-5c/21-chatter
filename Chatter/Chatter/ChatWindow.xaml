@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Chatter"
         mc:Ignorable="d"
-        Title="ChatWindow" Height="450" Width="800">
+        Title="ChatWindow" Height="450" Width="800"
+        Closing="Window_Closing">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.25*"></RowDefinition>
@@ -18,6 +19,11 @@
             <ColumnDefinition Width="0.25*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <Label Content="{Binding Path=Name}"></Label>
+        <Label Name="ClientNameLabel" Grid.ColumnSpan="3" Background="Aqua" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+
+        <ListView Name="MessagesList" Grid.Row="1" Grid.ColumnSpan="3"/>
+        <Label Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Msg:"/>
+        <TextBox Name="ChatTextBox" Grid.Row="3" Grid.Column="1"/>
+        <Button Grid.Row="3" Grid.Column="3" Content="Send" Click="Button_Click"/>
     </Grid>
 </Window>
